@@ -21,15 +21,8 @@ export const onKeyDown = dispatch => e => {
     }
 }
 export const onScroll = dispatch => e => {
-    const direction =
-        e.deltaX < 0 || e.deltaY > 0 ? 1 : e.deltaX > 0 || e.deltaY < 0 ? -1 : 0
+};
 
-    e.preventDefault()
-    dispatch({
-        type: 'STEPS',
-        direction,
-    })
-}
 
 const addEventToBody = (name, fn) => document.body.addEventListener(name, fn)
 const removeEventFromBody = (name, fn) =>

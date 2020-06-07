@@ -1,6 +1,7 @@
 import React from 'react'
 import useUpdate from './useUpdate'
 import { Arc } from './Arc'
+import {getPercentageFromValue} from './utils.js';
 import { Pointer } from './Pointer'
 import { Scale } from './Scale'
 import { Value } from './Value'
@@ -29,8 +30,6 @@ export const Knob = ({
     className,
 }) => {
     const {
-        percentage,
-        value,
         onStart,
         svg,
         container,
@@ -41,11 +40,16 @@ export const Knob = ({
         max,
         initialValue,
         angleOffset,
+        percentage: getPercentageFromValue(initialValue, min, max),
         angleRange,
         size,
         steps: stepsToSnapTo(steps, snap),
         onChange,
     })
+
+    let value = initialValue;
+
+    let percentage = initialValue !== undefined ? (initialValue - min) / (max - min) : 0;
 
     return (
         <div
